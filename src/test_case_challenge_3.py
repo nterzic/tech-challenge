@@ -1,7 +1,5 @@
 
 from challenge_3 import recurisive_get_value
-from challenge_2 import AwsMetaData
-import json
 
 def test_give_examples():
 

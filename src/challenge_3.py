@@ -13,3 +13,9 @@ def recurisive_get_value(d, k):
         return elem
 
     return recurisive_get_value(elem, k[1:])
+
+
+if __name__ == '__main__':
+    input_1_obj = {"a":{"b":{"c":"d"}}}
+    input_1_key = 'a'
+    print(recurisive_get_value(input_1_obj, 'a'))

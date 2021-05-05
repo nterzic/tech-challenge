@@ -72,9 +72,14 @@ class AwsMetaData():
         return res
         
             
-    def get_all_meta_info(self):
+    def get_all_meta_info(self, endpoint=['meta-data/']):
         
-        all_meta_data_info_json = json.dumps(self.recursive_get_all_endpoints(['meta-data/']))
+        if not isinstance(endpoint, str) and not isinstance(endpoint, list):
+            raise ValueError("Endpoint param needs to be either str or list. \nProvided input endpoint was {} which is of {}".format(endpoint, type(endpoint)))
+        if isinstance(endpoint, str):
+            endpoint = [endpoint]
+        
+        all_meta_data_info_json = json.dumps(self.recursive_get_all_endpoints(endpoint))
         return all_meta_data_info_json
 
 
@@ -88,6 +93,9 @@ if __name__ == '__main__':
     print("JSON OUTPUT --", meta_json, type(meta_json))
 
     print("#####################"*5)
+    # TESTING Challenge 3
+    # which is also retrieving data key individually, but post actual metadata request
+    # This could be used if want to cache entire metadata json, and then retrieve keys many times, instead of making request calls for every single specific endpoint
     print("TESTING challenge 3")
     print("---------------------"*5)
     meta_dict = json.loads(meta_json)
